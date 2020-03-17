@@ -1,0 +1,151 @@
+$main-background-color:#E5E5E5;
+
+$header-background-color: #050417;
+$header-paddings: 25px 106px 25px 50px;
+
+$logo-background-color: linear-gradient(333.23deg, #2A2B8D -16.84%, #2B2F8F -12.31%, #559BD1 119.72%);
+$logo-border-radius: 26px;
+$logo-margin-right: 50px;
+$logo-size:70px;
+$logo-main-color:#0F1046;
+$logo-main-eye-inner-color : #2A2B8D;
+$logo-main-eye-outer-color : white;
+$logo-main-eye-position: 25px;
+
+$header-bar-padding-left: 18px;
+$header-bar-height: 50px;
+$header-bar-width: 35%;
+
+$header-bar-search-width: 15%;
+$header-bar-search-border-radious: 25px;
+$header-bar-search-bg-color: #2A2B8D;
+$header-bar-search-text-color: white;
+
+$header-bar-collections-bg-color: white;
+$header-bar-collections-text-color: grey;
+$header-bar-collections-sub-bg-color:  #D5D7E5;
+$header-bar-collections-sub-radious:  15%;
+
+
+@mixin circle($size) {
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+}
+
+%header-bars {
+    width: $header-bar-width;
+    margin: 0 5% 0 5%;
+    height: $header-bar-height;
+    border-radius: 4px;
+    padding-left: $header-bar-padding-left;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $main-background-color;
+    margin: 0;
+}
+
+// Prevents image overflow
+img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+}
+
+// Fallback for HTML 4
+section,
+article,
+aside,
+footer,
+header,
+nav {
+    display: block;
+}
+
+header {
+    width: 100%;
+    background-color: $header-background-color;
+    padding: $header-paddings;
+}
+
+#header-inner {
+    height: $logo-size;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+#logo {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: $logo-background-color;
+    border-radius: $logo-border-radius;
+    width: $logo-size;
+    height: $logo-size;
+}
+
+// TODO: eye pops up at lower resolutions
+
+#logo-eye-inner {
+    background-color: $logo-main-eye-inner-color;
+    @include circle(3px);
+    position: absolute;
+    top: $logo-main-eye-position + 1;
+    left: $logo-main-eye-position - 7;
+}
+
+#logo-eye-outer {
+    background-color: $logo-main-eye-outer-color;
+    @include circle(7px);
+    position: absolute;
+    top: $logo-main-eye-position - 1;
+    left: $logo-main-eye-position - 9;
+}
+
+#search-box {
+    @extend %header-bars;
+}
+
+#search-collections {
+    @extend %header-bars;
+    text-align: left;
+    background-color: $header-bar-collections-bg-color;
+    color: $header-bar-collections-text-color;
+    position: relative;
+    border: none;
+
+    svg {
+        position: absolute;
+        top: 45%;
+        right:  18px;
+    }
+
+    div {
+        background-color: $header-bar-collections-sub-bg-color;
+        border-radius: $header-bar-collections-sub-radious;
+        width: 90%;
+        height: 5px;
+        position: absolute;
+        bottom: -4px;
+        left: 5%;
+
+    }
+}
+
+#search-button {
+    height: $header-bar-height;
+    width: $header-bar-search-width;
+    border-radius: $header-bar-search-border-radious;
+    background-color: $header-bar-search-bg-color;
+    color: $header-bar-search-text-color;
+    font-weight: bold;
+    border: none;    
+}
