@@ -1,5 +1,7 @@
 $main-background-color:#E5E5E5;
 
+// Header
+
 $header-background-color: #050417;
 $header-paddings: 25px 106px 25px 50px;
 
@@ -23,9 +25,16 @@ $header-bar-search-text-color: white;
 
 $header-bar-collections-bg-color: white;
 $header-bar-collections-text-color: grey;
-$header-bar-collections-sub-bg-color:  #D5D7E5;
-$header-bar-collections-sub-radious:  15%;
+$header-bar-collections-sub-bg-color: #D5D7E5;
+$header-bar-collections-sub-radious: 15%;
 
+// Main
+
+$main-width: 75%;
+$main-top-margin: 50px;
+$main-row-width: 32,
+6%;
+$main-row-border-width: 1vw;
 
 @mixin circle($size) {
     width: $size;
@@ -39,6 +48,18 @@ $header-bar-collections-sub-radious:  15%;
     height: $header-bar-height;
     border-radius: 4px;
     padding-left: $header-bar-padding-left;
+}
+
+@media only screen and (max-width: 768px) {
+    .row {
+        margin-right: $main-row-border-width;
+        margin-left: $main-row-border-width;
+        width: 100vw;
+    }
+
+    main {
+        flex-wrap: wrap;
+    }
 }
 
 * {
@@ -125,7 +146,7 @@ header {
     svg {
         position: absolute;
         top: 45%;
-        right:  18px;
+        right: 18px;
     }
 
     div {
@@ -147,5 +168,26 @@ header {
     background-color: $header-bar-search-bg-color;
     color: $header-bar-search-text-color;
     font-weight: bold;
-    border: none;    
+    border: none;
+}
+
+main {
+    width: $main-width;
+    margin-top: $main-top-margin;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+}
+
+.row {
+    width: $main-row-width;
+    margin-right: $main-row-border-width;
+
+    img {
+        margin-bottom: $main-row-border-width;
+    }
+}
+
+.row:last-child {
+    margin-right: 0;
 }
