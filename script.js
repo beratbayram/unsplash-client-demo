@@ -3,20 +3,31 @@
 var accessKey = "?client_id=qeQaN2KGdxje3FEzIbsH11uJ70cJNybNgbjiwCH6YnY";
 var API = "https://api.unsplash.com/";
 var collectionList = [];
+var loadMoreStack = 0;
 
 function switchNoResultPanel(mode) {
   let panel = document.getElementById("no-result-panel");
-  if (mode)
+  if (mode) {
     panel.style.display = "block";
-  else
+  } else
+    panel.style.display = "none";
+};
+
+function displayLoadMorePanel(mode) {
+  let panel = document.getElementById("load-more");
+  if (mode) {
+    if (document.getElementById("no-result-panel").style.display == "none" &&
+      document.getElementById("error-panel").style.display == "none")
+      panel.style.display = "block";
+  } else
     panel.style.display = "none";
 };
 
 function switchErrorPanel(mode) {
   let panel = document.getElementById("error-panel");
-  if (mode)
+  if (mode) {
     panel.style.display = "block";
-  else
+  } else
     panel.style.display = "none";
 };
 
@@ -34,6 +45,7 @@ axios.get(API + "/collections/featured" + accessKey + "&per_page=4")
     console.log(e);
   })
 
+//collections menu dropdown event
 function setCollectionsBar(i) {
   let collectionsValue = document.getElementById("search-collections-value");
 
@@ -42,16 +54,23 @@ function setCollectionsBar(i) {
   collectionsValue.style.color = "#050417";
 }
 
-
-function searchButton() {
+//search button and load more button event
+function searchButton(beCleaned) {
 
   switchNoResultPanel(false);
-  for (let index = 0; index < 3; index++)
-    document.getElementsByClassName("row")[index].innerHTML = "";
+  switchErrorPanel(false);
+
+  if (beCleaned) {
+    loadMoreStack = 0;
+    displayLoadMorePanel(false);
+    for (let index = 0; index < 3; index++)
+      document.getElementsByClassName("row")[index].innerHTML = "";
+  } else {
+    loadMoreStack += 3;
+  }
 
   let busyIndicator = document.getElementById("busy-indicator");
-  busyIndicator.style.display = "block";
-
+  busyIndicator.style.display = "flex";
 
   let query = document.getElementById("search-box").value;
   let collection = document.getElementById("search-collections-value").innerText;
@@ -68,7 +87,7 @@ function searchButton() {
   collection = (collection == "Collections") ? "" : "&collections=" + collection;
 
   for (let index = 1; index <= 3; index++) {
-    let response = axios.get(API + "/search/photos" + accessKey + "&query=" + query + collection + "&per_page=5&page=" + index)
+    let response = axios.get(API + "/search/photos" + accessKey + "&query=" + query + collection + "&per_page=5&page=" + (index + loadMoreStack))
     response.then(response => {
       let row = document.getElementsByClassName("row")[index - 1];
 
@@ -79,21 +98,25 @@ function searchButton() {
       for (const iterator of response.data.results) {
         row.innerHTML += `<a href="${iterator.links.html}"><img src="${iterator.urls.regular}"></a>`
       }
+
       busyCheck++;
     }).catch(e => {
       switchErrorPanel(true);
       console.log(e);
       busyCheck++;
-    })  
+    })
   }
 
   //if all three row are done, remove indicator.
   let handler = setInterval(() => {
     if (busyCheck >= 3) {
       busyIndicator.style.display = "none";
+      displayLoadMorePanel();
       clearInterval(handler);
     }
   }, 500);
+
+
 }
 
-searchButton();
+searchButton(true);

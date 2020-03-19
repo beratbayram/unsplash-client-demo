@@ -156,12 +156,28 @@ header {
 }
 
 #busy-indicator {
+  position: fixed;
+  display: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+#busy-img {
   width: 100px;
   height: 100px;
-  margin-top: 150px;
   margin-left: auto;
   margin-right: auto;
-  display: none;
+  display: block;
 }
 
 #error-panel,
@@ -182,6 +198,7 @@ header {
 }
 
 #no-result-panel {
+  margin-top: 0;
   background-color: lightgrey;
 }
 
@@ -210,6 +227,15 @@ main {
 
 .row:last-child {
   margin-right: 0;
+}
+
+#load-more {
+  display: none;
+  width: 100%;
+  height: 50px;
+  border: none;
+  background-color: rgba(5, 4, 23, 0.9);
+  color: white;
 }
 
 @media only screen and (max-width: 768px) {

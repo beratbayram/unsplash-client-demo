@@ -35,31 +35,34 @@
                     <li onclick="setCollectionsBar(-1)">Collections</li>
                 </ul>
             </button>
-            <button id="search-button" onclick="searchButton()">
+            <button id="search-button" onclick="searchButton(true)">
                 <p>
                     SEARCH
                 </p>
             </button>
         </div>
     </header>
-    <img id="busy-indicator" src="loading.gif">
     <div id="error-panel">
         <p>Something went wrong. Please refresh page.</p>
     </div>
-    <div id="no-result-panel">
-        <p>No Result</p>
+    <div id="busy-indicator">
+        <img id="busy-img" src="loading.gif">
     </div>
     <main>
         <div class="row">
-            
+
         </div>
         <div class="row">
-            
+
         </div>
         <div class="row">
-            
+
         </div>
     </main>
+    <div id="no-result-panel">
+        <p>No Result</p>
+    </div>
+    <button id="load-more" onclick="searchButton(false)">Load More</button>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>
 </body>
