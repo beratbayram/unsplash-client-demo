@@ -113,8 +113,6 @@ header {
     height: $logo-size;
 }
 
-// TODO: eye pops up at lower resolutions
-
 #logo-eye-inner {
     background-color: $logo-main-eye-inner-color;
     @include circle(3px);
@@ -225,13 +223,13 @@ header {
 #error-panel,
 #no-result-panel {
     width: $main-width;
-    margin-top: $main-top-margin + $header-bar-height + $header-y-paddings * 2;
     margin-right: auto;
     margin-left: auto;
     display: none;
     background-color: $error-bg-color;
     border-radius: 4px;
     padding: $error-paddings;
+    margin-top: 0;
 
     p {
         color: red;
@@ -239,7 +237,6 @@ header {
 }
 
 #no-result-panel{
-    margin-top: 0;
     background-color: lightgrey;
     p {
         color: black;
@@ -274,6 +271,7 @@ main {
     border: none;
     background-color: $header-background-color;
     color: $header-bar-search-text-color;
+    margin-top: $main-row-border-width;
 }
 
 @media only screen and (max-width: 768px) {

@@ -42,13 +42,11 @@
             </button>
         </div>
     </header>
-    <div id="error-panel">
-        <p>Something went wrong. Please refresh page.</p>
-    </div>
     <div id="busy-indicator">
         <img id="busy-img" src="loading.gif">
     </div>
     <main>
+        <!-- These rows will be filled out with query results-->
         <div class="row">
 
         </div>
@@ -59,11 +57,17 @@
 
         </div>
     </main>
+    <div id="error-panel">
+        <p>Something went wrong. Please refresh page.</p>
+    </div>
     <div id="no-result-panel">
         <p>No Result</p>
     </div>
     <button id="load-more" onclick="searchButton(false)">Load More</button>
+
+    <!--Axios tool for easy http requests-->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <script src="script.js"></script>
 </body>
 
