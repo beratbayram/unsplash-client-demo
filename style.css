@@ -169,7 +169,7 @@ header {
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 3;
 }
 
 #busy-img {
@@ -245,8 +245,7 @@ main {
     width: 75vw;
   }
   main,
-  #error-panel,
-  #busy-indicator {
+  #error-panel {
     display: block;
     margin-top: 320px;
   }

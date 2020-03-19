@@ -208,7 +208,7 @@ header {
     height: 100%;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: 3;
 
 }
 
@@ -282,8 +282,7 @@ main {
     }
 
     main,
-    #error-panel,
-    #busy-indicator {
+    #error-panel{
         display: block;
         margin-top: $main-top-margin + $header-bar-height + $header-y-paddings * 2 + 170px;
     }

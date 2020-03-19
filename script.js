@@ -101,8 +101,6 @@ function searchButton(beCleaned) {
       let row = document.getElementsByClassName("row")[index - 1];
 
       //If no result is found
-      console.log(response.data.total);
-      
       if (response.data.total <= 3 * loadMoreStack)
         toggleNoResultPanel(true);
 
