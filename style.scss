@@ -2,8 +2,9 @@ $main-background-color:#E5E5E5;
 
 // Header
 
-$header-background-color: #050417;
-$header-paddings: 25px 106px 25px 50px;
+$header-background-color: rgba(5, 4, 23, 0.9);
+$header-y-paddings: 25px;
+$header-paddings: $header-y-paddings 106px $header-y-paddings 50px;
 
 $logo-background-color: linear-gradient(333.23deg, #2A2B8D -16.84%, #2B2F8F -12.31%, #559BD1 119.72%);
 $logo-border-radius: 26px;
@@ -33,7 +34,9 @@ $header-bar-collections-dropdown-bg-color-active: rgba(213, 215, 229, 0.3);
 $header-bar-collections-dropdown-text-color: #050417;
 $header-bar-collections-dropdown-paddings: 15px 0px 15px 20px;
 $header-bar-collections-dropdown-shadow: 0px 4px 13px rgba(0, 0, 0, 0.1);
-// Main
+
+$error-bg-color: rgba(255, 74, 74, 0.1);
+$error-paddings: 11px 30px;
 
 $main-width: 75%;
 $main-top-margin: 50px;
@@ -69,6 +72,8 @@ $main-row-border-width: 1vw;
 
 * {
     box-sizing: border-box;
+    font-family: "Open sans";
+    font-weight: 600;
 }
 
 body {
@@ -97,6 +102,8 @@ header {
     width: 100%;
     background-color: $header-background-color;
     padding: $header-paddings;
+    position: fixed;
+    top: 0;
 }
 
 #header-inner {
@@ -153,7 +160,8 @@ header {
         right: 18px;
     }
 
-    div { //little grey bar
+    div {
+        //little grey bar
         background-color: $header-bar-collections-sub-bg-color;
         border-radius: $header-bar-collections-sub-radious;
         width: 90%;
@@ -170,12 +178,12 @@ header {
         box-shadow: $header-bar-collections-dropdown-shadow;
         border-bottom-right-radius: 4%;
         border-bottom-left-radius: 4%;
-        bottom: -236px;
-        left: -0.5px;
-        width: 100%;
+        bottom: -235px;
+        left: -0.1px;
+        width: 99.9%;
         padding-left: 0;
     }
-    
+
     li {
         display: block;
         padding: $header-bar-collections-dropdown-paddings;
@@ -204,9 +212,33 @@ header {
     border: none;
 }
 
-main {
+#busy-indicator {
+    width: 100px;
+    height: 100px;
+    margin-top: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+}
+
+#error-panel {
     width: $main-width;
     margin-top: $main-top-margin;
+    margin-right: auto;
+    margin-left: auto;
+    display: none;
+    background-color: $error-bg-color;
+    border-radius: 4px;
+    padding: $error-paddings;
+
+    p {
+        color: red;
+    }
+}
+
+main {
+    width: $main-width;
+    margin-top: $main-top-margin + $header-bar-height + $header-y-paddings * 2;
     margin-right: auto;
     margin-left: auto;
     display: flex;
