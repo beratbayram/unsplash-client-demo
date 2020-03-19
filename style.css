@@ -158,13 +158,14 @@ header {
 #busy-indicator {
   width: 100px;
   height: 100px;
-  margin-top: 200px;
+  margin-top: 150px;
   margin-left: auto;
   margin-right: auto;
   display: none;
 }
 
-#error-panel {
+#error-panel,
+#no-result-panel {
   width: 75%;
   margin-top: 150px;
   margin-right: auto;
@@ -175,8 +176,17 @@ header {
   padding: 11px 30px;
 }
 
-#error-panel p {
+#error-panel p,
+#no-result-panel p {
   color: red;
+}
+
+#no-result-panel {
+  background-color: lightgrey;
+}
+
+#no-result-panel p {
+  color: black;
 }
 
 main {
@@ -208,7 +218,9 @@ main {
     margin-left: 1vw;
     width: 75vw;
   }
-  main, #error-panel {
+  main,
+  #error-panel,
+  #busy-indicator {
     display: block;
     margin-top: 320px;
   }

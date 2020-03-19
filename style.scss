@@ -203,13 +203,14 @@ header {
 #busy-indicator {
     width: 100px;
     height: 100px;
-    margin-top: 200px;
+    margin-top: $main-top-margin + $header-bar-height + $header-y-paddings * 2;
     margin-left: auto;
     margin-right: auto;
     display: none;
 }
 
-#error-panel {
+#error-panel,
+#no-result-panel {
     width: $main-width;
     margin-top: $main-top-margin + $header-bar-height + $header-y-paddings * 2;
     margin-right: auto;
@@ -221,6 +222,13 @@ header {
 
     p {
         color: red;
+    }
+}
+
+#no-result-panel{
+    background-color: lightgrey;
+    p {
+        color: black;
     }
 }
 
@@ -252,7 +260,9 @@ main {
         width: 75vw;
     }
 
-    main,#error-panel {
+    main,
+    #error-panel,
+    #busy-indicator {
         display: block;
         margin-top: $main-top-margin + $header-bar-height + $header-y-paddings * 2 + 170px;
     }

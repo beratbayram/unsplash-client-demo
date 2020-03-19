@@ -4,6 +4,22 @@ var accessKey = "?client_id=qeQaN2KGdxje3FEzIbsH11uJ70cJNybNgbjiwCH6YnY";
 var API = "https://api.unsplash.com/";
 var collectionList = [];
 
+function switchNoResultPanel(mode) {
+  let panel = document.getElementById("no-result-panel");
+  if (mode)
+    panel.style.display = "block";
+  else
+    panel.style.display = "none";
+};
+
+function switchErrorPanel(mode) {
+  let panel = document.getElementById("error-panel");
+  if (mode)
+    panel.style.display = "block";
+  else
+    panel.style.display = "none";
+};
+
 axios.get(API + "/collections/featured" + accessKey + "&per_page=4")
   .then(response => {
     let ul = document.getElementById("collections-list");
@@ -13,7 +29,10 @@ axios.get(API + "/collections/featured" + accessKey + "&per_page=4")
       ul.innerHTML += `<li onclick="setCollectionsBar(${i})">${iterator.title}</li>`;
       i++;
     }
-  }).catch(console.log)
+  }).catch(e => {
+    switchErrorPanel(true);
+    console.log(e);
+  })
 
 function setCollectionsBar(i) {
   let collectionsValue = document.getElementById("search-collections-value");
@@ -23,18 +42,10 @@ function setCollectionsBar(i) {
   collectionsValue.style.color = "#050417";
 }
 
-function switchErrorPanel(mode) {
-  let errorPanel = document.getElementById("error-panel");
-  if (mode)
-    errorPanel.style.display = "block";
-  else
-    errorPanel.style.display = "none";
-
-};
 
 function searchButton() {
 
-  switchErrorPanel(false);
+  switchNoResultPanel(false);
   for (let index = 0; index < 3; index++)
     document.getElementsByClassName("row")[index].innerHTML = "";
 
@@ -63,17 +74,21 @@ function searchButton() {
 
       //If no result is found
       if (response.data.total == 0)
-        switchErrorPanel(true);
+        switchNoResultPanel(true);
 
       for (const iterator of response.data.results) {
         row.innerHTML += `<a href="${iterator.links.html}"><img src="${iterator.urls.regular}"></a>`
       }
       busyCheck++;
-    }).catch(console.log)
+    }).catch(e => {
+      switchErrorPanel(true);
+      console.log(e);
+      busyCheck++;
+    })  
   }
-  //
+
+  //if all three row are done, remove indicator.
   let handler = setInterval(() => {
-    //if all three row are done, remove indicator.
     if (busyCheck >= 3) {
       busyIndicator.style.display = "none";
       clearInterval(handler);
