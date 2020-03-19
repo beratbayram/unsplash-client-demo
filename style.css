@@ -7,18 +7,6 @@
   border: none;
 }
 
-@media only screen and (max-width: 768px) {
-  .row {
-    margin-right: 1vw;
-    margin-left: 1vw;
-    width: 100vw;
-  }
-  main {
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-  }
-}
-
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -135,7 +123,7 @@ header {
           box-shadow: 0px 4px 13px rgba(0, 0, 0, 0.1);
   border-bottom-right-radius: 4%;
   border-bottom-left-radius: 4%;
-  bottom: -235px;
+  bottom: -250px;
   left: -0.1px;
   width: 99.9%;
   padding-left: 0;
@@ -178,7 +166,7 @@ header {
 
 #error-panel {
   width: 75%;
-  margin-top: 50px;
+  margin-top: 150px;
   margin-right: auto;
   margin-left: auto;
   display: none;
@@ -212,5 +200,41 @@ main {
 
 .row:last-child {
   margin-right: 0;
+}
+
+@media only screen and (max-width: 768px) {
+  .row {
+    margin-right: 1vw;
+    margin-left: 1vw;
+    width: 75vw;
+  }
+  main, #error-panel {
+    display: block;
+    margin-top: 320px;
+  }
+  header {
+    padding: 25px;
+  }
+  header div {
+    display: block;
+    width: 100vw;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  #logo {
+    padding: 0;
+  }
+  #header-inner {
+    width: 100%;
+    margin: 0;
+    height: auto;
+    display: block;
+  }
+  #search-box,
+  #search-collections,
+  #search-button {
+    width: 100%;
+    margin: 10px 0 0 0;
+  }
 }
 /*# sourceMappingURL=style.css.map */
