@@ -12,7 +12,9 @@ Uses [Unsplash API](https://unsplash.com/developers) to work.
 * [Sass](https://sass-lang.com/)
 * Responsive Design
 * Busy indicators
-* Basic error handling
+* No result handling
+* HTTP request failure handling
+* Infinite content with "load more" button
 
 ## Screenshot
 
